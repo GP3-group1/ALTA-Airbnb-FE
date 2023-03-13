@@ -1,5 +1,5 @@
 import React from 'react'
-import Navbar from '../Components/Navbar'
+import Navbar from '../components/Navbar'
 
 import seririt from '../assets/seririt.jpg'
 
@@ -63,6 +63,47 @@ const Reserve = () => {
                                 <div className='border-2 text-black flex h-10 items-center justify-center rounded-lg'>Check out Date</div>
                             </div>
                             <div className='bg-[#4397fb] text-white mt-10 h-10 flex justify-center items-center rounded-md text-xl font-medium '>Check Svailable</div>
+                        </div>
+                    </div>
+                </div>
+                <div className='py-10'>
+                    <h1 className='text-xl font-bold'>star 4+ 16 reviews</h1>
+                    <div className='py-10 grid grid-cols-2 gap-10'>
+                        <div>
+                            <p className='font-bold'>Ali</p>
+                            <p>12/3/2023</p>
+                            <p className='w-96 mt-3'>The korowai is an amazing experience,
+                                you would love to stay a day or two here
+                                isolated in this beautiful place. We stayed at
+                                the honeymoon suite, loved the quick service
+                                and the beautiful ambience as well as the...</p>
+                        </div>
+                        <div>
+                            <p className='font-bold'>Ultramen joget</p>
+                            <p>12/3/2023</p>
+                            <p className='w-96 mt-3'>The korowai is an amazing experience,
+                                you would love to stay a day or two here
+                                isolated in this beautiful place. We stayed at
+                                the honeymoon suite, loved the quick service
+                                and the beautiful ambience as well as the...</p>
+                        </div>
+                        <div>
+                            <p className='font-bold'>Capybara</p>
+                            <p>12/3/2023</p>
+                            <p className='w-96 mt-3'>The korowai is an amazing experience,
+                                you would love to stay a day or two here
+                                isolated in this beautiful place. We stayed at
+                                the honeymoon suite, loved the quick service
+                                and the beautiful ambience as well as the...</p>
+                        </div>
+                        <div>
+                            <p className='font-bold'>Udin</p>
+                            <p>12/3/2023</p>
+                            <p className='w-96 mt-3'>The korowai is an amazing experience,
+                                you would love to stay a day or two here
+                                isolated in this beautiful place. We stayed at
+                                the honeymoon suite, loved the quick service
+                                and the beautiful ambience as well as the...</p>
                         </div>
                     </div>
                 </div>

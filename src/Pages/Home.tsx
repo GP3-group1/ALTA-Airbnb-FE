@@ -1,13 +1,19 @@
 
 import React, { Children, useState } from 'react'
-import Navbar from '../Components/Navbar'
+import Navbar from '../components/Navbar'
 
 import { FaFilter } from 'react-icons/fa'
 import { AiTwotoneStar } from 'react-icons/ai'
 import { IoLocationSharp, IoWalletSharp } from 'react-icons/io5'
-import Card from '../Components/Card'
+import Card from '../components/Card'
+import { useNavigate } from 'react-router'
 
 const Home = () => {
+    const navigate = useNavigate()
+
+    const handleDetail = () => {
+        navigate('/reserve')
+    }
 
     return (
         <div>
@@ -56,14 +62,14 @@ const Home = () => {
 
             {/* card */}
             <div className='w-full md:px-10 px-5 py-10 gap-10 md:gap-6 grid sm:grid-cols-1 md:grid-cols-4  '>
-                <Card title='Seririt bali' location='bali' rating='4' price='$200' />
-                <Card title='Seririt bali' location='bali' rating='4' price='$200' />
-                <Card title='Seririt bali' location='bali' rating='4' price='$200' />
-                <Card title='Seririt bali' location='bali' rating='4' price='$200' />
-                <Card title='Seririt bali' location='bali' rating='4' price='$200' />
-                <Card title='Seririt bali' location='bali' rating='4' price='$200' />
-                <Card title='Seririt bali' location='bali' rating='4' price='$200' />
-                <Card title='Seririt bali' location='bali' rating='4' price='$200' />
+                <Card title='Seririt bali' location='bali' rating='4' price='$200' handleDetail={handleDetail} />
+                <Card title='Seririt bali' location='bali' rating='4' price='$200' handleDetail={handleDetail} />
+                <Card title='Seririt bali' location='bali' rating='4' price='$200' handleDetail={handleDetail} />
+                <Card title='Seririt bali' location='bali' rating='4' price='$200' handleDetail={handleDetail} />
+                <Card title='Seririt bali' location='bali' rating='4' price='$200' handleDetail={handleDetail} />
+                <Card title='Seririt bali' location='bali' rating='4' price='$200' handleDetail={handleDetail} />
+                <Card title='Seririt bali' location='bali' rating='4' price='$200' handleDetail={handleDetail} />
+                <Card title='Seririt bali' location='bali' rating='4' price='$200' handleDetail={handleDetail} />
             </div>
         </div>
     )
