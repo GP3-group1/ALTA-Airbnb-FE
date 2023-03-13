@@ -4,8 +4,10 @@ import Home from './Pages/Home'
 import Reserve from './Pages/Reserve'
 import Login from './Pages/Login'
 import Register from './Pages/Register'
+import Payment from './Pages/Payment'
 import Trip from './Pages/Trip'
 import Profile from './Pages/Profile'
+
 
 
 
@@ -18,6 +20,7 @@ function App() {
         <Route path='/home' element={<Home />} />
         <Route path='/reserve' element={<Reserve />} />
         <Route path='/register' element={<Register/>} />
+        <Route path='/payment' element={<Payment />} />
         <Route path='/trip' element={<Trip/>} />
         <Route path='/profile' element={<Profile/>} />
       </Routes>
