@@ -2,8 +2,14 @@ import React from 'react'
 import Navbar from '../components/Navbar'
 
 import seririt from '../assets/seririt.jpg'
+import { useNavigate } from 'react-router'
 
 const Reserve = () => {
+    const navigate = useNavigate()
+
+    const handlePayment = () => {
+        navigate('')
+    }
     return (
         <>
             <Navbar />
@@ -62,7 +68,7 @@ const Reserve = () => {
                                 <div className='border-2 text-black flex h-10 items-center justify-center rounded-lg'>Check in Date</div>
                                 <div className='border-2 text-black flex h-10 items-center justify-center rounded-lg'>Check out Date</div>
                             </div>
-                            <div className='bg-[#4397fb] text-white mt-10 h-10 flex justify-center items-center rounded-md text-xl font-medium '>Check Svailable</div>
+                            <div onClick={handlePayment} className='bg-[#4397fb] text-white mt-10 h-10 flex justify-center items-center rounded-md text-xl font-medium '>Check Svailable</div>
                         </div>
                     </div>
                 </div>
