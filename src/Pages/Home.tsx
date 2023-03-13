@@ -1,11 +1,13 @@
 
 import React, { Children, useState } from 'react'
-import Navbar from '../Components/Navbar'
-
+import Navbar from '../components/Navbar'
 import { FaFilter } from 'react-icons/fa'
 import { AiTwotoneStar } from 'react-icons/ai'
 import { IoLocationSharp, IoWalletSharp } from 'react-icons/io5'
-import Card from '../Components/Card'
+import Card from '../components/Card'
+import { User } from '../store/features/userSlice'
+
+const fullname = JSON.parse(localStorage.getItem('user') || "") as User
 
 const Home = () => {
 

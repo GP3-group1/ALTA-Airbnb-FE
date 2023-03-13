@@ -4,6 +4,7 @@ import Home from './Pages/Home'
 import Reserve from './Pages/Reserve'
 import Login from './Pages/Login'
 import Register from './Pages/Register'
+import Payment from './Pages/Payment'
 
 
 
@@ -16,6 +17,7 @@ function App() {
         <Route path='/reserve' element={<Reserve />} />
         <Route path='/' element={<Login/>} />
         <Route path='/register' element={<Register/>} />
+        <Route path='/payment' element={<Payment />} />
       </Routes>
     </BrowserRouter>
   )

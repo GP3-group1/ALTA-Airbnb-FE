@@ -60,7 +60,6 @@ const Login = () => {
             showConfirmButton: false,
             timer: 1500,
           });
-
           setCookie('userToken', data.token, { path: "/" })
           dispatch(login(data));
           navigate("/");
@@ -94,7 +93,7 @@ const Login = () => {
         screen.width > 767 ?
         <div style={bg} className="h-screen w-screen ">
         <div className="flex h-screen items-center xl:ml-[200px] md:ml">
-          <div className="w-full h-auto p-6 bg-blue-500 align-middle rounded-xl shadow-xl lg:max-w-xl">
+          <div className="w-full h-auto p-6 bg-blue-500 align-middle rounded-xl shadow-xl lg:max-w-xl md:max-w-md">
             <h1 className="text-5xl font-bold text-center text-white uppercase mt-10 mb-10">
               LOGIN
             </h1>
