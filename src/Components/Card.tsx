@@ -8,12 +8,13 @@ interface myProps {
     location: string
     rating: any
     price: any
+    handleDetail: React.MouseEventHandler
 }
 
 
-const Card: FC<myProps> = ({ title, location, rating, price }) => {
+const Card: FC<myProps> = ({ title, location, rating, price,handleDetail}) => {
     return (
-        <div className='md:w-full w-full h-fit rounded-md'>
+        <div className='md:w-full w-full h-fit rounded-md' onClick={handleDetail}>
             <img src={seririt} alt="" className='rounded-md' />
             <div className=' mt-2'>
                 <h1 className='font-bold'>{title}</h1>
