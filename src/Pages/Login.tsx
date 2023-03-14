@@ -93,8 +93,8 @@ const Login = () => {
         screen.width > 767 ?
         <div style={bg} className="h-screen w-screen ">
         <div className="flex h-screen items-center xl:ml-[200px] md:ml">
-          <div className="w-full h-auto p-6 bg-blue-500 align-middle rounded-xl shadow-xl lg:max-w-xl md:max-w-md">
-            <h1 className="text-5xl font-bold text-center text-white uppercase mt-10 mb-10">
+          <div className="w-full p-6 bg-blue-500 align-middle rounded-xl shadow-xl lg:max-w-md xl:max-h-[800px] lg:max-h-[600px] xl:max-w-lg">
+            <h1 className="text-5xl font-bold text-center text-white uppercase mt-10 mb-10 lg:text-3xl xl:text-5xl">
               LOGIN
             </h1>
             <p className="text-white text-center mb-20">
@@ -150,7 +150,7 @@ const Login = () => {
 
               <button
                 type="submit"
-                className="btn btn-wide sm:btn-sm md:btn-md lg:btn-lg flex mx-auto mt-10 px-4 py-2 tracking-wide border-orange-alta hover:border-orange-alta text-white transition-colors duration-200 transform bg-orange-alta rounded-md hover:bg-orange-700 focus:outline-none focus:bg-dark-alta"
+                className="btn btn-wide sm:btn-sm md:btn-md lg:btn-lg flex mx-auto xl:mt-10 lg:mt-0 mt-10 mb-10 px-4 py-2 tracking-wide border-orange-alta hover:border-orange-alta text-white transition-colors duration-200 transform bg-orange-alta rounded-md hover:bg-orange-700 focus:outline-none focus:bg-dark-alta"
               >
                 <p className="text-2xl">Login</p>
               </button>
