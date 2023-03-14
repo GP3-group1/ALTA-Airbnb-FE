@@ -56,7 +56,7 @@ const Reserve = () => {
                                 <li>TV with standard cable</li>
                             </ul>
                         </div>
-                        <div className='p-5 rounded-md border-2 border-black '>
+                        <div className='p-5 rounded-md border-2 border-[#4397fb] shadow-lg '>
                             <div className='grid grid-cols-2'>
                                 <h1><span className='text-xl font-bold'> $400</span> night</h1>
                                 <div className='text-end font-semibold'>
