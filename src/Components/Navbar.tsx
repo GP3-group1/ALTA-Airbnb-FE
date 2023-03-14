@@ -20,7 +20,7 @@ const Navbar = () => {
         navigate('/home')
     }
     return (
-        <div>
+        <div className='z-50'>
             {screen.width > 767
                 ? <div className='w-full h-16 flex flex-row justify-around items-center bg-[#4397fb]'>
                     <h1 className='text-white cursor-pointer font-bold'onClick={goHome} >LOGO</h1>
