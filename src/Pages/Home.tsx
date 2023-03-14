@@ -9,7 +9,7 @@ import { IoLocationSharp, IoWalletSharp } from 'react-icons/io5'
 import Card from '../components/Card'
 import { User } from '../store/features/userSlice'
 import { useNavigate } from 'react-router'
-const fullname = JSON.parse(localStorage.getItem('user') || "") as User
+// const fullname = JSON.parse(localStorage.getItem('user') || "") as User
 
 
 
