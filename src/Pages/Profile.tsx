@@ -11,6 +11,9 @@ const Profile = () => {
     const goTrip = () => {
         Navigate('/trip')
     }
+    const hosting = () => {
+        Navigate('/hosting')
+    }
 
     return (
         <>
@@ -30,7 +33,7 @@ const Profile = () => {
                 </div>
                 {/* hosting */}
                 <h1 className='my-5 text-xl font-semibold '>Hosting</h1>
-                <div className='bg-blue-200 pl-5 rounded-md py-2 cursor-pointer flex flex-row justify-between items-center'>
+                <div onClick={hosting} className='bg-blue-200 pl-5 rounded-md py-2 cursor-pointer flex flex-row justify-between items-center'>
                     <div className='grid grid-cols-2 w-fit '>
                     <p>Rent your place</p>
                     </div>

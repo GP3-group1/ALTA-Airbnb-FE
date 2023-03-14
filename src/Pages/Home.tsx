@@ -8,7 +8,8 @@ import { AiTwotoneStar } from 'react-icons/ai'
 import { IoLocationSharp, IoWalletSharp } from 'react-icons/io5'
 import Card from '../components/Card'
 import { User } from '../store/features/userSlice'
-const fullname = JSON.parse(localStorage.getItem('user') || "") as User
+import { useNavigate } from 'react-router-dom'
+// const fullname = JSON.parse(localStorage.getItem('user') || "") as User
 
 
 

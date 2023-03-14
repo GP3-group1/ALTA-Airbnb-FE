@@ -41,7 +41,7 @@ const Login = () => {
       e.preventDefault();
       try {
         const response = await axios.post(
-          "https://virtserver.swaggerhub.com/JURRASIC_1/ALTA-Airbnb-API/1.0/login",
+          "http://104.198.56.90:8081/login",
           {
             email: email,
             password: password,
