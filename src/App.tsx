@@ -8,6 +8,8 @@ import Payment from './Pages/Payment'
 import Trip from './Pages/Trip'
 import Account from './Pages/Account'
 import Profile from './Pages/Profile'
+import ListHosting from './Pages/ListHosting'
+import Hosting from './Pages/Hosting'
 
 
 
@@ -25,6 +27,8 @@ function App() {
         <Route path='/trip' element={<Trip/>} />
         <Route path='/account' element={<Account/>} />
         <Route path='/profile' element={<Profile/>} />
+        <Route path='/listhosting' element={<ListHosting/>} />
+        <Route path='/hosting' element={<Hosting />} />
       </Routes>
     </BrowserRouter>
   )

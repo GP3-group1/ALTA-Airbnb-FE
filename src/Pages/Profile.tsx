@@ -3,6 +3,16 @@ import Navbar from '../components/Navbar'
 
 const Profile = () => {
 
+    const Navigate = useNavigate()
+
+    const goTrip = () => {
+        Navigate('/trip')
+    }
+    const hosting = () => {
+        Navigate('/hosting')
+    }
+
+
     return (
         <>
             <Navbar />
@@ -24,6 +34,7 @@ const Profile = () => {
                     <div className='flex flex-row justify-end gap-5'>
                         <button className='bg-red-500 text-white px-3 rounded-md text-center text-bold'>Close</button>
                         <button className='bg-blue-500 text-white px-3 rounded-md text-center text-bold' >Save change</button>
+
                     </div>
                 </form>
             </div>

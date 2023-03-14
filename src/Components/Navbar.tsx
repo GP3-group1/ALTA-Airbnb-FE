@@ -33,6 +33,7 @@ const Navbar = () => {
     window.scrollY
     return (
         <div className=' sticky top-0 '>
+
             {screen.width > 767
                 ? <div className={`w-full h-20 flex flex-row justify-around items-center   ${scroll > 50 ? 'bg-[#4397fb]' : 'bg-white'} duration-500  shadow-md`}>
                     <h1 className={` ${scroll > 50 ? 'text-white' : 'text-[#4397fb]'}   cursor-pointer font-bold`} onClick={goHome} >LOGO</h1>
