@@ -1,5 +1,5 @@
 
-import React, { Children, useState } from 'react'
+import React, { Children, useState, useEffect } from 'react'
 import Navbar from '../components/Navbar'
 
 
@@ -9,17 +9,35 @@ import { IoLocationSharp, IoWalletSharp } from 'react-icons/io5'
 import Card from '../components/Card'
 import { User } from '../store/features/userSlice'
 import { useNavigate } from 'react-router'
-const fullname = JSON.parse(localStorage.getItem('user') || "") as User
+import axios from 'axios'
+import { useCookies } from 'react-cookie'
 
 
 
 
 const Home = () => {
     const navigate = useNavigate()
+    const [cookies, setCookie, removeCookie] = useCookies(["userToken"]);
+    const [allRoom, setAllRoom] = useState([])
 
-    const handleDetail = () => {
-        navigate('/reserve')
+
+    const handleDetail = (id:number) => {
+        navigate(`/reserve/${id}`)
     }
+
+    const getAllRoom = async () => {
+        await axios.get('http://104.198.56.90:8081/rooms?page=1&limit=8', {
+            headers: { Authorization: `Bearer ${cookies.userToken}` }
+        })
+            .then((response) => {
+                setAllRoom(response.data.data)
+            })
+    }
+
+    useEffect(() => {
+        getAllRoom()
+    }, [])
+
 
     return (
         <div>
@@ -68,14 +86,11 @@ const Home = () => {
 
             {/* card */}
             <div className='w-full md:px-10 px-5 py-10 gap-10 md:gap-6 grid sm:grid-cols-1 md:grid-cols-4  '>
-                <Card title='Seririt bali' location='bali' rating='4' price='$200' handleDetail={handleDetail} />
-                <Card title='Seririt bali' location='bali' rating='4' price='$200' handleDetail={handleDetail} />
-                <Card title='Seririt bali' location='bali' rating='4' price='$200' handleDetail={handleDetail} />
-                <Card title='Seririt bali' location='bali' rating='4' price='$200' handleDetail={handleDetail} />
-                <Card title='Seririt bali' location='bali' rating='4' price='$200' handleDetail={handleDetail} />
-                <Card title='Seririt bali' location='bali' rating='4' price='$200' handleDetail={handleDetail} />
-                <Card title='Seririt bali' location='bali' rating='4' price='$200' handleDetail={handleDetail} />
-                <Card title='Seririt bali' location='bali' rating='4' price='$200' handleDetail={handleDetail} />
+                {allRoom?.map((items: any, index: any) => {
+                    return (
+                        <Card key={index} title={items.name} location={items.location} rating={items.avg_rating} price={`$${items.price}`} handleDetail={() => handleDetail(items.id)} />
+                    )
+                })}
             </div>
         </div>
     )
