@@ -20,10 +20,26 @@ const Home = () => {
     const navigate = useNavigate()
     const [cookies, setCookie, removeCookie] = useCookies(["userToken"]);
     const [allRoom, setAllRoom] = useState([])
+    const [balance , setBalance] = useState([''])
 
 
     const handleDetail = (id:number) => {
         navigate(`/reserve/${id}`)
+    }
+
+    const getBalance = async() => {
+        try {
+            const res = await axios.get(`http://104.198.56.90:8081/users/balances` , {
+                headers: {
+                    Authorization: `Bearer ${cookies.userToken}`
+                }
+            })
+            const arr: any = [res.data.data]
+            setBalance(arr)
+            console.log(res.data)
+        } catch (error) {
+            console.log(error)
+        }
     }
 
     const getAllRoom = async () => {
@@ -37,9 +53,11 @@ const Home = () => {
 
     useEffect(() => {
         getAllRoom()
+        getBalance()
     }, [])
 
-
+    console.log('balance babi', balance);
+    
     return (
         <div>
             <Navbar />
@@ -50,7 +68,15 @@ const Home = () => {
                 </div>
                 <div className='flex flex-row-reverse items-center gap-2 mt-5'>
                     <IoWalletSharp className='text-2xl text-[#4397fb]' />
-                    <span className='text-lg font-bold'>$500</span>
+                    {
+                        balance?.map((item: any , i:any) => {
+                            return (
+                                <div key={item.id} className='text-2xl text-[#4397fb]'>
+                                    ${item.balance}
+                                </div>
+                            )
+                        })
+                    }
                 </div>
             </div>
 
