@@ -16,12 +16,15 @@ import Hosting from './Pages/Hosting'
 
 
 function App() {
+
+
+
   return (
     <BrowserRouter>
       <Routes>
         <Route path='/' element={<Login/>} />
         <Route path='/home' element={<Home />} />
-        <Route path='/reserve' element={<Reserve />} />
+        <Route path='/reserve/:id' element={<Reserve />} />
         <Route path='/register' element={<Register/>} />
         <Route path='/payment' element={<Payment />} />
         <Route path='/trip' element={<Trip/>} />
