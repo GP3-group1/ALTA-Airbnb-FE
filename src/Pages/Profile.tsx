@@ -18,7 +18,7 @@ const Profile = () => {
         <>
             <Navbar />
             <div className='px-10 py-10'>
-                <h1 className='mb-10 text-2xl font-bold'>Account</h1>
+                <h1 className='mb-10 text-2xl font-bold'>Profile</h1>
                 <form action="" className='flex flex-col mb-20 '>
                     <label htmlFor="">Name</label>
                     <input type="text" className='border-b-2  h-8  mb-5 outline-none' />

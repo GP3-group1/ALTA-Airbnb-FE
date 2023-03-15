@@ -45,7 +45,9 @@ const [cookies, setCookie, removeCookie] = useCookies(["userToken"]);
   const goProfile = () => {
     Navigate("/profile");
   };
-
+const goList = () => {
+  Navigate("/listhosting");
+}
   return (
     <>
       <Navbar />
@@ -67,7 +69,7 @@ const [cookies, setCookie, removeCookie] = useCookies(["userToken"]);
         </div>
         {/* hosting */}
         <h1 className="my-5 text-xl font-semibold ">Hosting</h1>
-        <div className="bg-blue-200 pl-5 rounded-md py-2 cursor-pointer flex flex-row justify-between items-center">
+        <div className="bg-blue-200 pl-5 rounded-md py-2 cursor-pointer flex flex-row justify-between items-center" onClick={goList}>
           <div className="grid grid-cols-2 w-fit ">
             <p>Rent your place</p>
           </div>
@@ -75,9 +77,9 @@ const [cookies, setCookie, removeCookie] = useCookies(["userToken"]);
         </div>
         {/* altapay */}
         <h1 className="my-5 text-xl font-semibold ">Altapay</h1>
-        <div className="bg-blue-200 pl-5 rounded-md py-2 flex flex-row cursor-pointer justify-between items-center">
+        <label className="bg-blue-200 pl-5 rounded-md py-2 flex flex-row cursor-pointer justify-between items-center" htmlFor="my-modal-6" >
           <div className="grid grid-cols-2 w-fit ">
-            <label htmlFor="my-modal-6" >
+            <label >
               Top up
             </label>
 
@@ -100,7 +102,7 @@ const [cookies, setCookie, removeCookie] = useCookies(["userToken"]);
             </div>
           </div>
           <MdKeyboardArrowRight className="text-3xl " />
-        </div>
+        </label>
         {/* trip */}
         <h1 className="my-5 text-xl font-semibold ">Trip</h1>
         <div

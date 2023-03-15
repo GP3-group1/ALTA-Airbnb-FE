@@ -63,16 +63,18 @@ const Hosting: FC<ImageInputProps> = ({ onImageChange }) => {
   };
 
 
-
+  const [image, setImage] = useState(null)
+  
 
   return (
     <div className="flex flex-col ">
       <Navbar />
+
       <form onSubmit={handleSubmit} className="flex flex-col px-32">
       <div className="grid grid-cols-4 gap-2 mt-5 px-5 ">
           {previewUrls.length > 0 ? (
             previewUrls.map((url, index) => (
-              <div key={index}>
+              <div key={index} className="flex flex-col shadow-md max-w-xl justify-center items-center">
                 <img src={url} alt="Preview" style={{ maxWidth: "50%" }} />
                 <button
                   className="btn btn-xs mt-2 mb-2 flex mx-auto"

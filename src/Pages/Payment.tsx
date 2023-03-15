@@ -25,50 +25,7 @@ const Payment = () => {
 
           <div className="card w-full bg-base-100 shadow-xl border mb-5 h-full">
             <div className="card-body">
-              <h1 className="text-2xl">Ocean Beachfront Luxury</h1>
-              <div className="flex flex-row gap-2 mt-5">
-                <DatePicker
-                  placeholderText="Check-in"
-                  id="start_date"
-                  selected={startDate}
-                  onChange={(date: Date | null) => setStartDate(date)}
-                  selectsStart
-                  startDate={startDate}
-                  endDate={endDate}
-                  minDate={new Date()}
-                  maxDate={maxDate}
-                  className="border border-gray-400 py-2 px-4 rounded-lg w-full"
-                />
-                <FaCalendar className="h-6 w-6 my-auto text-gray-500" />
-                <DatePicker
-                  placeholderText="Check-Out"
-                  id="end_date"
-                  selected={endDate}
-                  onChange={(date: Date | null) => setEndDate(date)}
-                  selectsEnd
-                  startDate={startDate}
-                  endDate={endDate}
-                  minDate={new Date()}
-                  maxDate={maxDate}
-                  className="border border-gray-400 py-2 px-4 rounded-lg w-full"
-                />
-              </div>
-              <div className="flex flex-col gap-3 mt-10">
-                <p className="font-bold">
-                  <span className="text-orange-alta">$200</span> x 2night
-                </p>
-                <p className="font-bold">
-                  total price : <span className="text-orange-alta">$400</span>
-                </p>
-              </div>
-              <div className="flex justify-center md:justify-end mt-10">
-                <button
-                  className="btn btn-wide flex bg-dark-alta text-white hover:bg-dark-alta hover:text-white hover:translate-y-1"
-                  onClick={() => navigate("/trip")}
-                >
-                  Confirm and Pay
-                </button>
-              </div>
+              
             </div>
           </div>
           {/* Card 2 */}
