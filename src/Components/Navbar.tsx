@@ -72,9 +72,8 @@ const Navbar = () => {
     window.scrollY
     return (
         <div className=' sticky top-0 z-50'>
-
             {screen.width > 767
-                ? <div className={`w-full h-20 flex flex-row justify-around items-center   bg-white duration-500  shadow-md`}>
+                ? <div className={`w-full h-20 flex flex-row justify-between px-10       items-center   bg-white duration-500  shadow-md`}>
                     {/* <h1 className={` ${scroll > 50 ? 'text-white' : 'text-[#4397fb]'}cursor-pointer font-bold`} onClick={goHome} ></h1> */}
                     <img onClick={goHome} className='w-32 h-32 mt-5 cursor-pointer' src={logo} />
                     <div className='flex bg-[#eeeeee] rounded-lg px-2 items-center' >
