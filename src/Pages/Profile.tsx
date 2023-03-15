@@ -32,9 +32,9 @@ const Profile = () => {
                     <input type="text" className='border-b-2 h-8 mb-5 outline-none' />
                     <label htmlFor="">Zip code</label>
                     <input type="text" className='border-b-2 h-8 mb-5 outline-none' />
-                    <div className='flex flex-row justify-end gap-5'>
+                    <div className='flex flex-row justify-end gap-5 mt-5'>
                         <button className='bg-red-500 text-white px-3 rounded-md text-center text-bold'>Close</button>
-                        <button className='bg-blue-500 text-white px-3 rounded-md text-center text-bold' >Save change</button>
+                        <button className='bg-blue-500 text-white px-3 py-2  rounded-md text-center text-bold' >Save change</button>
 
                     </div>
                 </form>

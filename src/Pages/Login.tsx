@@ -33,8 +33,6 @@ const Login = () => {
 
   console.log(email);
   console.log(password);
-  
-  
 
   const handleLogin = useCallback(
     async (e: any) => {

@@ -42,7 +42,7 @@ const Reserve = () => {
             <div className='px-10 py-5'>
                 {dataRoom?.map((item: any, index: number) => {
                     return (
-                        <>
+                        <div key={index}>
                             <h1 className='font-bold text-2xl'>{item.name}</h1>
                             <div className='flex flex-row gap-2'>
                                 <h3>Star {item.avg_ratings}</h3>
@@ -134,7 +134,7 @@ const Reserve = () => {
                                     </div>
                                 </div>
                             </div>
-                        </>
+                        </div>
                     )
                 })}
             </div>

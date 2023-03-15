@@ -52,7 +52,7 @@ const goList = () => {
     <>
       <Navbar />
       <div className="px-10 py-10">
-        <h1 className="mb-10 text-2xl font-bold">Account</h1>
+        <h1 className="mb-10 text-3xl font-bold">Account</h1>
         {/* profile */}
         <div
           onClick={goProfile}
@@ -68,20 +68,20 @@ const goList = () => {
           <MdKeyboardArrowRight className="text-3xl " />
         </div>
         {/* hosting */}
-        <h1 className="my-5 text-xl font-semibold ">Hosting</h1>
-        <div className="bg-blue-200 pl-5 rounded-md py-2 cursor-pointer flex flex-row justify-between items-center" onClick={goList}>
+        <h1 className="my-5 text-2xl font-semibold ">Hosting</h1>
+        <div className="border-b-2 rounded-md py-2 cursor-pointer flex flex-row justify-between items-center">
           <div className="grid grid-cols-2 w-fit ">
             <p>Rent your place</p>
           </div>
           <MdKeyboardArrowRight className="text-3xl " />
         </div>
         {/* altapay */}
-        <h1 className="my-5 text-xl font-semibold ">Altapay</h1>
-        <label className="bg-blue-200 pl-5 rounded-md py-2 flex flex-row cursor-pointer justify-between items-center" htmlFor="my-modal-6" >
-          <div className="grid grid-cols-2 w-fit ">
-            <label >
+        <h1 className="my-5 text-2xl font-semibold ">Altapay</h1>
+        <label htmlFor="my-modal-6" className="border-b-2 rounded-md py-2 flex flex-row cursor-pointer justify-between items-center">
+          <div className="grid grid-cols-2 w-fit cursor-pointer ">
+            <p >
               Top up
-            </label>
+            </p>
 
             {/* Put this part before </body> tag */}
             <input type="checkbox" id="my-modal-6" className="modal-toggle" />
@@ -96,7 +96,6 @@ const goList = () => {
                   </label>
                     <label htmlFor="my-modal-6" className="btn btn-md bg-dark-alta border-none hover:bg-dark-alta" onClick={updateSaldo}>Confirm</label>
                 </div>
-
                 </div>
               </div>
             </div>
@@ -104,10 +103,10 @@ const goList = () => {
           <MdKeyboardArrowRight className="text-3xl " />
         </label>
         {/* trip */}
-        <h1 className="my-5 text-xl font-semibold ">Trip</h1>
+        <h1 className="my-5 text-2xl font-semibold ">Trip</h1>
         <div
           onClick={goTrip}
-          className="bg-blue-200 pl-5 rounded-md py-2 flex cursor-pointer flex-row justify-between items-center"
+          className="border-b-2 rounded-md py-2 flex cursor-pointer flex-row justify-between items-center"
         >
           <div className="grid grid-cols-2 w-fit ">
             <p>Check your trip</p>
