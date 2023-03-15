@@ -45,7 +45,9 @@ const [cookies, setCookie, removeCookie] = useCookies(["userToken"]);
   const goProfile = () => {
     Navigate("/profile");
   };
-
+const goList = () => {
+  Navigate("/listhosting");
+}
   return (
     <>
       <Navbar />
