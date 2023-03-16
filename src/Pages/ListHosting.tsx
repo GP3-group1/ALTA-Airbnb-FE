@@ -124,6 +124,7 @@ const ListHosting = () => {
   // handle Delete
   const handleDelete = async (id: number) => {
     try {
+      
       const response = await axios.delete(
         ` https://airbnb.my-extravaganza.site/rooms/${id}`, {
         headers: {
@@ -272,7 +273,7 @@ const ListHosting = () => {
             </div>
           )}
         </div>
-        <div className="flex lg:sticky absolute right-0 lg:bottom-20 lg:left-44 xl:bottom-[20] xl:right-20 ">
+        <div className="flex lg:sticky absolute lg:right-0 lg:bottom-20 xl:bottom-[20] xl:right-20 ">
           <button
             className="text-[#4397fb]"
             onClick={() => navigate("/hosting")}
