@@ -1,156 +1,151 @@
 import React, { FC, useState } from "react";
 import Navbar from "../components/Navbar";
-import axios from "axios";
+import axios, { AxiosRequestConfig } from "axios";
+import { useCookies } from "react-cookie";
+import Swal from "sweetalert2";
 
-type ImageInputProps = {
-  onImageChange?: (image: File | null) => void;
-};
-
-const Hosting: FC<ImageInputProps> = ({ onImageChange }) => {
-  const [previewUrls, setPreviewUrls] = useState<string[]>([]);
-  const [selectedImages, setSelectedImages] = useState<File[]>([]);
+const Hosting = () => {
+  // const [previewUrls, setPreviewUrls] = useState<string[]>([]);
+  // const [selectedImages, setSelectedImages] = useState<File[]>([]);
   const [name, setName] = useState("");
   const [location, setLocation] = useState("");
   const [description, setDescription] = useState("");
-  const [overview ,setOverview] = useState("")
+  const [overview, setOverview] = useState("");
   const [facilities, setFacilities] = useState("");
   const [price, setPrice] = useState<number>();
-  const [img ,setImg] = useState( )
+  const [image, setImage] = useState<File>();
+  const [cookies, setCookie, removeCookie] = useCookies(["userToken"]);
 
-  const handleImageChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    const files = event.target.files;
-    if (files) {
-      const images = Array.from(files).filter((file) =>
-        file.type.startsWith("image/"),
-      );
-      setSelectedImages((prevImages) => [...prevImages, ...images]);
-      const urls = Array.from(files).map((file) => URL.createObjectURL(file));
-      setPreviewUrls((prevUrls) => [...prevUrls, ...urls]);
+  const uploadFile = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    if (
+      !name ||
+      !location ||
+      !description ||
+      !overview ||
+      !facilities ||
+      !price ||
+      !image
+    ) {
+      console.error("All fields are required");
+      return;
     }
-  };
 
-  const handleRemoveImage = (index: number) => {
-    setPreviewUrls((prevUrls) => prevUrls.filter((_, i) => i !== index));
-    setSelectedImages((prevImages) => prevImages.filter((_, i) => i !== index));
-  };
+    const data = new FormData();
+    if (image instanceof File) {
+      data.append("image", image);
+    }
+    data.append("image", image);
+    data.append("overview", overview);
+    data.append("facilities", facilities);
+    data.append("price", price?.toString() || "");
+    data.append("name", name);
+    data.append("location", location);
+    data.append("description", description);
 
-  const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
-    event.preventDefault();
-    const formData = new FormData();
-    console.log(formData);
-    
-    selectedImages.forEach((image) => formData.append("images", image));
-    formData.append("name", name);
-    formData.append("location", location);
-    formData.append("description", description);
-    formData.append("overview", overview);
-    formData.append("facilities", facilities);
-    formData.append("price", price?.toString() || "");
     try {
-      await axios.post("http://104.198.56.90:8081/rooms", formData);
-      alert("Data uploaded successfully");
-      setName("");
-      setLocation("");
-      setDescription("");
-      setOverview("");
-      setFacilities("");
-      setPrice(undefined);
-      setSelectedImages([]);
-      setPreviewUrls([]);
+      const res = await axios.post("http://104.198.56.90:8081/rooms", data, {
+        headers: {
+          "content-type": "multipart/form-data",
+          Authorization: `Bearer ${cookies.userToken}`,
+        },
+      });
+      if (res.data) {
+        Swal.fire({
+          position: "center",
+          icon: "success",
+          text: "Successfully add Villa",
+          showConfirmButton: false,
+          timer: 1500,
+        });
+      }
     } catch (error) {
-      alert(`Error: ${error}`);
+      Swal.fire({
+        position: "center",
+        icon: "error",
+        title: "Villa Already uploaded",
+        showConfirmButton: true,
+      });
+      console.error(error);
     }
   };
 
-
-  const [image, setImage] = useState(null)
-  
+  const handleFileInputChange = (
+    event: React.ChangeEvent<HTMLInputElement>,
+  ) => {
+    const file = event.target.files?.[0];
+    if (file) {
+      setImage(file);
+      console.log(file);
+    }
+  };
 
   return (
-    <div className="flex flex-col ">
+    <div className="flex flex-col h-full">
       <Navbar />
 
-      <form onSubmit={handleSubmit} className="flex flex-col px-32">
-      <div className="grid grid-cols-4 gap-2 mt-5 px-5 ">
-          {previewUrls.length > 0 ? (
-            previewUrls.map((url, index) => (
-              <div key={index} className="flex flex-col shadow-md max-w-xl justify-center items-center">
-                <img src={url} alt="Preview" style={{ maxWidth: "50%" }} />
-                <button
-                  className="btn btn-xs mt-2 mb-2 flex mx-auto"
-                  onClick={() => handleRemoveImage(index)}
-                >
-                  Remove
-                </button>
-              </div>
-            ))
-          ) : (
-            <div>No images selected</div>
-          )}
-        </div>
-        <div>
-          <input
-            className="input"
-            type="file"
-            accept="image/*"
-            onChange={handleImageChange}
-            multiple
-          />
-        </div>
-        
+      <form onSubmit={uploadFile} className="flex flex-col lg:px-32 h-full overflow-hidden mb-20">
         {/* Test input */}
-        <div>
-          {/* <input type="file" onChange={(e) => handleInputChange(e)}  /> */}
-        </div>
-
         {/* end */}
         {/* Card input */}
-        <div className="card  shadow-md mt-20 ">
+        <div className="card shadow-md mt-20">
           <div className="card-body">
             <div className="flex flex-col gap-4 ">
+              <div className="flex justify-center mt-10">
+                {image && (
+                  <img src={URL.createObjectURL(image)} alt="Selected image" width={400} />
+                )}
+                <input
+                  type="file"
+                  name="file1"
+                  onChange={handleFileInputChange}
+                  id=""
+                />{" "}
+                <br />
+              </div>
               <input
-              value={name}
-              onChange={(e) => setName(e.target.value)}
+                value={name || ""}
+                onChange={(e) => setName(e.target.value)}
                 className="mx-auto input input-bordered input-accent w-full max-w-4xl"
                 type="text"
                 placeholder="name"
                 name="name"
               />
               <input
-              value={location}
-              onChange={(e) => setLocation(e.target.value)}
+                value={location || ""}
+                onChange={(e) => setLocation(e.target.value)}
                 className="mx-auto input input-bordered input-accent w-full max-w-4xl "
                 type="text"
                 placeholder="Location"
                 name="location"
               />
               <input
-              value={description}
-              onChange={(e) => setDescription(e.target.value)}
+                value={description || ""}
+                onChange={(e) => setDescription(e.target.value)}
                 className="mx-auto input input-bordered input-accent w-full max-w-4xl "
                 type="text"
                 placeholder="Description"
                 name="description"
               />
               <input
-              value={overview}
-              onChange={(e) => setOverview(e.target.value)}
+                value={overview || ""}
+                onChange={(e) => setOverview(e.target.value)}
                 className="mx-auto input input-bordered input-accent w-full max-w-4xl "
                 type="text"
                 placeholder="overview"
                 name="overview"
               />
               <input
-              value={facilities}
-              onChange={(e) => setFacilities(e.target.value)}
+                value={facilities || ""}
+                onChange={(e) => setFacilities(e.target.value)}
                 className="mx-auto input input-bordered input-accent w-full max-w-4xl "
                 type="text"
                 placeholder="facilities"
                 name="facilities"
               />
               <input
-              value={price}
-              onChange={(e) => setPrice(parseInt(e.target.value))}
+                value={price}
+                onChange={(e) => setPrice(parseInt(e.target.value))}
                 className="mx-auto input input-bordered input-accent w-full max-w-4xl "
                 type="number"
                 placeholder="Price"
@@ -158,7 +153,7 @@ const Hosting: FC<ImageInputProps> = ({ onImageChange }) => {
               />
               <button
                 type="submit"
-                className="btn btn-wide bg-dark-alta text-white hover:bg-dark-alta hover:text-white hover:translate-y-1 mt-5 mx-auto"
+                className="btn btn-wide bg-dark-alta text-white hover:bg-dark-alta hover:text-white hover:translate-y-1 lg:mt-5 mx-auto "
               >
                 Submit
               </button>

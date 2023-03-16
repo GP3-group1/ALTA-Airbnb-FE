@@ -20,7 +20,7 @@ const Payment = () => {
           Payment & Confirm
         </h1>
 
-        <div className="grid grid-cols-2 lg:cols-row-2 w-full mx-5 md:mx-auto mt-20 md:mt-24 gap-5 pb-32 px-32">
+        <div className="grid grid-cols-1 lg:grid-cols-2 lg:cols-row-2 max-w-full mx-5 md:mx-auto mt-20 md:mt-24 gap-5 lg:pb-32 lg:px-32 mb-32">
           {/* Card 1 */}
 
           <div className="card w-full bg-base-100 shadow-xl border mb-5 h-full">

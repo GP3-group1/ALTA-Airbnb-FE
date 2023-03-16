@@ -14,12 +14,11 @@ const [cookies, setCookie, removeCookie] = useCookies(["userToken"]);
   const Navigate = useNavigate();
 
     const updateSaldo = async() => {
-
       try {
         const addSalddo = {
             amount: saldo
         }
-      const res =  await axios.put('http://104.198.56.90:8081/users/balances' , addSalddo , {
+      const res =  await axios.put('https://airbnb.my-extravaganza.site/users/balances' , addSalddo , {
             headers: {Authorization : `Bearer ${cookies.userToken}`}
         })
         if (res.data) {
