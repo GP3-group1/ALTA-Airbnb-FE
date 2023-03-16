@@ -44,7 +44,7 @@ const Hosting = () => {
     data.append("description", description);
 
     try {
-      const res = await axios.post("http://104.198.56.90:8081/rooms", data, {
+      const res = await axios.post("https://airbnb.my-extravaganza.site/rooms", data, {
         headers: {
           "content-type": "multipart/form-data",
           Authorization: `Bearer ${cookies.userToken}`,
