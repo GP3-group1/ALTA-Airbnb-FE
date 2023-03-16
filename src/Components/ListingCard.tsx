@@ -81,9 +81,9 @@ const ListCard: FC<myProps> = ({
           <span className="text-orange-600 text-sm">${price}</span> / night
         </p>
       </div>
-      <div className="flex justify-evenly mt-16 lg:mt-36 gap-4 ">
+      <div className="flex justify-evenly mt-5 mb-5 lg:mt-36 gap-4 ">
         <button onClick={handleEditClick}
-        className="btn btn-sm w-36 items-center pt-1 bg-orange-alta border-none hover:bg-orange-alta hover:translate-y-1">
+        className="btn btn-sm w-36 items-center pt-1 bg-[#4397fb] border-none hover:bg-[#4397fb] hover:translate-y-1">
           <label
             htmlFor={editModal}
             

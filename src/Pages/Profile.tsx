@@ -4,17 +4,20 @@ import { useNavigate } from 'react-router-dom'
 import axios from 'axios'
 import { useCookies } from 'react-cookie'
 import Swal from 'sweetalert2'
+import { useDispatch } from 'react-redux'
+import { logout } from '../store/features/userSlice'
 
 
 const Profile = () => {
     const Navigate = useNavigate()
-    const [cookies, setCookie] = useCookies(['userToken'])
+    const [cookies, setCookie, removeCookie] = useCookies(['userToken'])
     const [dataUser, setDataUser] = useState<any>([])
     const [name, setName] = useState('')
     const [email, setEmail] = useState('')
     const [phone, setPhone] = useState('')
     const [sex, setSex] = useState('')
     const [address, setAddress] = useState('')
+    const dispatch = useDispatch()
 
     const goTrip = () => {
         Navigate('/trip')
@@ -73,9 +76,91 @@ const Profile = () => {
     }
 
     useEffect(() => {
+        if(!cookies.userToken){
+            Navigate('/login')
+        }
         getUser()
-    }, [])
+    }, [cookies.userToken])
 
+    
+   const handleDelete = async(e: any) => {
+    Swal.fire({
+        position: 'center',
+        icon: 'warning',
+        title: 'Are you sure?',
+        text: "Are you sure want to delete Account",
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+    })
+  await axios.delete('https://airbnb.my-extravaganza.site/users' ,{
+    headers: {
+      Authorization: `Bearer ${cookies.userToken}`
+    }
+  }).then((res) => {
+    console.log(res.data)
+    if(res.data){
+      Swal.fire({
+        position: "center",
+        icon: "success",
+        text: "successfully delete user data",
+        showConfirmButton: false,
+        timer: 1500,
+      });
+      removeCookie('userToken')
+      console.log(cookies.userToken)
+      Navigate('/')
+    }
+  }).catch((err) => {
+    console.log(err)
+    Swal.fire({
+      position: "center",
+      icon: "error",
+      text: "something went wrong",
+      showConfirmButton: false,
+      timer: 1500,
+    });
+  })
+}
+
+    const [oldPass, setOldPass] = useState('')
+    const [newPass, setNewPass] = useState('')
+
+    const handleChangePwd = async (e:any) => {
+        e.preventDefault()
+        await axios.put('https://airbnb.my-extravaganza.site/users/password',
+        {old_password: oldPass,
+        new_password: newPass}, {
+            headers: {
+                Authorization: `Bearer ${cookies.userToken}`
+            }
+        }
+        ).then((res) => {
+            console.log(res.data);
+            if(res.data){
+                Swal.fire({
+                    position: "center",
+                    icon: "success",
+                    text: "succesfully update password",
+                    showConfirmButton: false,
+                    timer: 1500,
+                });
+            }
+        }).catch((err) => {
+            console.log(err)
+            Swal.fire({
+                position: "center",
+                icon: "error",
+                text: "something went wrong",
+                showConfirmButton: false,
+                timer: 1500,
+            });
+        })
+    }
+    const [showPassword, setShowPassword]=  useState(false)
+    const handleTogglePassword = () => {
+        setShowPassword(!showPassword);
+      };
+    
 
     return (
         <>
@@ -83,6 +168,37 @@ const Profile = () => {
             <div className='px-10 py-10'>
                 <h1 className='mb-10 text-2xl font-bold'>Profile</h1>
                 <form action="" className='flex flex-col mb-20 '>
+                    <div className='flex flex-row justify-center mb-20'>
+                        <div className='btn btn-wide bg-white text-black mr-4 hover:text-white' onClick={(e) => handleDelete(e)}>
+                        Delete Account
+                        </div>
+                       
+                        <div className=''>
+                        <label className='btn btn-wide bg-white text-black hover:text-white' htmlFor="my-modal-3">Change password?</label>
+                        {/* Put this part before </body> tag */}
+                        <input type="checkbox" id="my-modal-3" className="modal-toggle" />
+                        <div className="modal">
+                        <div className="modal-box relative flex flex-col gap-3">
+                            <label htmlFor="my-modal-3" className="btn btn-sm btn-circle absolute right-2 top-2">✕</label>
+                            <label htmlFor="oldpass">Old password : </label>
+                            <input className='input input-bordered input-accent w-full' type={showPassword ? "text" : "password"} placeholder='old password'
+                            value={oldPass}
+                             onChange={(e) => setOldPass(e.target.value)}
+                             />
+                            <label htmlFor="newpass">New password : </label>
+                            <input className='input input-bordered input-accent w-full' type={showPassword ? "text" : "password"} placeholder='new password'
+                            value={newPass}
+                            onChange={(e) => setNewPass(e.target.value)}
+                            />
+                            <div className='flex justify-center mr-4 mt-5'>
+                                <button className='btn btn-wide bg-dark-alta hover:bg-dark-alta translate-y-1'
+                                onClick={handleChangePwd}
+                                >Save</button>
+                            </div>
+                        </div>
+                        </div>
+                        </div>
+                    </div>
                     <label htmlFor="">Name</label>
                     <input type="text" onChange={(e) => setName(e.target.value)} value={name} className='border-b-2  h-8  mb-5 outline-none' />
                     <label htmlFor="">Email</label>
