@@ -9,14 +9,17 @@ import Swal from "sweetalert2";
 import ModalEditVilla, { FormVillaValue } from "../components/ModalEditVilla";
 import ModalFotoEdit, { AddFoto } from "../components/ModalFotoEdit";
 import ListCard from "../components/ListingCard";
+import Loader from "../components/Loader";
 
 const ListHosting = () => {
   const [getListing, setGetListing] = useState<any[]>(['']);
   const [cookies, setCookie, removeCookie] = useCookies(["userToken"]);
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
+  const [isLoad, setIsLoad] = useState(false)
 
   const getAllList = async () => {
+    setIsLoad(!isLoad)
     try {
       const response = await axios.get(
         "https://airbnb.my-extravaganza.site/rooms/users/",
@@ -30,7 +33,8 @@ const ListHosting = () => {
       // console.log("check img : ", response.data.data?.facilities);
       setLoading(true);
       setGetListing(response.data.data);
-    } catch (error) {}
+    } catch (error) { }
+    setIsLoad(false)
   };
 
 
@@ -39,29 +43,29 @@ const ListHosting = () => {
   }, []);
 
 
-// edit value VIlla
-const initialVillaValues: FormVillaValue = {
-  name: "",
-  overview: "",
-  description: "",
-  facilities: "",
-  location: "",
-  price: null,
-  images: null
-}
-
-const [villaEditValues, setVillaEditValues] = useState<FormVillaValue>(initialVillaValues);
-const [editMode, setEditMode] = useState(false);
-const [selectedVilla, setSelectedVilla] = useState<number>();
-
-const handleEditModal = (id: number) => {
-  const properties = getListing.find((card: any) => card.id === id);
-  
-  
-  if (!properties) {
-    return;
+  // edit value VIlla
+  const initialVillaValues: FormVillaValue = {
+    name: "",
+    overview: "",
+    description: "",
+    facilities: "",
+    location: "",
+    price: null,
+    images: null
   }
-    console.log("test 50",properties.images)
+
+  const [villaEditValues, setVillaEditValues] = useState<FormVillaValue>(initialVillaValues);
+  const [editMode, setEditMode] = useState(false);
+  const [selectedVilla, setSelectedVilla] = useState<number>();
+
+  const handleEditModal = (id: number) => {
+    const properties = getListing.find((card: any) => card.id === id);
+
+
+    if (!properties) {
+      return;
+    }
+    console.log("test 50", properties.images)
     console.log('test', properties);
     console.log(properties);
     setEditMode(true);
@@ -73,12 +77,12 @@ const handleEditModal = (id: number) => {
       location: properties.location,
       price: properties.price,
       images: properties.images,
-      
+
     });
-    
+
     setSelectedVilla(id);
   }
-  
+
   const editList = async (values: FormVillaValue) => {
     const formData = new FormData();
     formData.append("name", values.name);
@@ -90,30 +94,30 @@ const handleEditModal = (id: number) => {
     formData.append("image", values.images || "");
     console.log();
     try {
-      const response = await axios.put(`https://airbnb.my-extravaganza.site/rooms/${selectedVilla}` , formData,
-      { 
-        headers: {
-          Authorization: `Bearer ${cookies.userToken}`,
-          "Content-Type": "multipart/form-data"
-        }
-    })
-    console.log(selectedVilla);
-    if(response.data) {
-      Swal.fire({
-        position: "center",
-        icon: "success",
-        title: "Villa Edited Successfully",
-        showConfirmButton: false,
-        timer: 1500
-      });
-      getAllList();
-      setEditMode(false);
+      const response = await axios.put(`https://airbnb.my-extravaganza.site/rooms/${selectedVilla}`, formData,
+        {
+          headers: {
+            Authorization: `Bearer ${cookies.userToken}`,
+            "Content-Type": "multipart/form-data"
+          }
+        })
+      console.log(selectedVilla);
+      if (response.data) {
+        Swal.fire({
+          position: "center",
+          icon: "success",
+          title: "Villa Edited Successfully",
+          showConfirmButton: false,
+          timer: 1500
+        });
+        getAllList();
+        setEditMode(false);
+      }
+
+    } catch (error) {
+      console.log(error);
+
     }
-    
-  } catch (error) {
-    console.log(error);
-    
-  }
   };
 
 
@@ -122,13 +126,13 @@ const handleEditModal = (id: number) => {
     try {
       const response = await axios.delete(
         ` https://airbnb.my-extravaganza.site/rooms/${id}`, {
-          headers: {
-            // "Content-Type": "application/json",
-            Authorization: `Bearer ${cookies.userToken}`,
-          },
-        }
-        )
-      if(response.data) {
+        headers: {
+          // "Content-Type": "application/json",
+          Authorization: `Bearer ${cookies.userToken}`,
+        },
+      }
+      )
+      if (response.data) {
         Swal.fire({
           position: "center",
           icon: "success",
@@ -138,27 +142,27 @@ const handleEditModal = (id: number) => {
         });
       }
       getAllList()
-      console.log('delete',response.data);
+      console.log('delete', response.data);
     } catch (error) {
       console.error(error);
     }
   };
-  
+
   // add newPhoto
-  const initialPhoto : AddFoto ={ 
+  const initialPhoto: AddFoto = {
     room_id: "",
     image: null
   }
-  
-  const [editImgVilla , setEditImgVilla] = useState<AddFoto>(initialPhoto)
-  const [selectImg , setSelectImg] = useState<string>()
-  
+
+  const [editImgVilla, setEditImgVilla] = useState<AddFoto>(initialPhoto)
+  const [selectImg, setSelectImg] = useState<string>()
+
   //handleModalFor add Foto
   const handleEditFoto = useCallback((room_id: string) => {
     const editProp = getListing.find((item: any) => item.images[0].room_id === room_id);
     console.log("test edit ", editProp.images[0].room_id);
     console.log("editProps :", editProp);
-    
+
     if (!editProp) {
       return;
     }
@@ -179,7 +183,7 @@ const handleEditModal = (id: number) => {
 
     if (x.room_id !== undefined) {
       data.append("room_id", x.room_id);
-    } 
+    }
     if (x.image !== null) {
       data.append("image", x.image);
     }
@@ -217,30 +221,31 @@ const handleEditModal = (id: number) => {
 
   return (
     <>
+      {isLoad ? <Loader /> : ''}
       <div className="flex flex-col ">
         <Navbar />
         <ModalFotoEdit
-        onSubmit={EditImage2}
-        newFoto={editImgVilla}
-        editMode={editMode}
+          onSubmit={EditImage2}
+          newFoto={editImgVilla}
+          editMode={editMode}
 
         />
-        <ModalEditVilla 
-        onSubmit={editList}
-        editValues={villaEditValues}
-        editMode={editMode}
+        <ModalEditVilla
+          onSubmit={editList}
+          editValues={villaEditValues}
+          editMode={editMode}
         />
         <div className="grid grid-cols-1 mx-auto lg:grid-cols-4 lg:px-20 xl:grid-cols-4 xl:px-20 px-5 gap-5 max-h-80 mt-20 min-h-screen mb-96">
           {getListing && loading === true ? (
-            getListing?.map((item: any, i:number) => {
+            getListing?.map((item: any, i: number) => {
               // console.log("tess", item.images[0].room_id);
-              
+
               // console.log("test2", getListing);
               // console.log("test", item.images[0].url_image);
               return (
-               <>
-                <ListCard
-                handleDetail={() => handleEditFoto(item.images[0].room_id)}
+                <>
+                  <ListCard
+                    handleDetail={() => handleEditFoto(item.images[0].room_id)}
                     image={item.images[0].url_image}
                     key={i}
                     id={item.id}
@@ -251,9 +256,9 @@ const handleEditModal = (id: number) => {
                     location={item.location}
                     handleDelete={handleDelete}
                     handleEdit={() => handleEditModal(item.id)}
-                    editModal="add-villa-modal" 
+                    editModal="add-villa-modal"
                     imageModal="add-foto-modal"
-                    loading={false}                                />
+                    loading={false} />
                 </>
               );
             })
