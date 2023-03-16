@@ -71,7 +71,7 @@ const Account = () => {
         </div>
         {/* hosting */}
         <h1 className="my-5 text-2xl font-semibold ">Hosting</h1>
-        <div className="border-b-2 rounded-md py-2 cursor-pointer flex flex-row justify-between items-center">
+        <div className="border-b-2 rounded-md py-2 cursor-pointer flex flex-row justify-between items-center" onClick={goList}>
           <div className="grid grid-cols-2 w-fit ">
             <p>Rent your place</p>
           </div>
