@@ -31,11 +31,6 @@ const Login = () => {
   
   };
 
-  console.log(email);
-  console.log(password);
-  
-  
-
   const handleLogin = useCallback(
     async (e: any) => {
       e.preventDefault();
@@ -47,10 +42,8 @@ const Login = () => {
             password: password,
           },
         );
-        console.log(response);
         
         const { data } = response.data;
-        console.log(data);
         
         if (response.data) {
           Swal.fire({

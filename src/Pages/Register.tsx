@@ -36,7 +36,7 @@ const Register = () => {
       return;
     }
     try {
-      const response = await axios.post('http://104.198.56.90:8081/users', {
+      const response = await axios.post(' https://airbnb.my-extravaganza.site/users', {
         email: email,
         password: password,
         name: username,

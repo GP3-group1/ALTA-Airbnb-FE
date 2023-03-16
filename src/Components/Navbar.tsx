@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useCallback } from 'react'
+import React, {FC, useState, useEffect, useCallback } from 'react'
 import { Select, Option } from "@material-tailwind/react";
 
 import Swal from 'sweetalert2';
@@ -11,14 +11,17 @@ import { useDispatch } from 'react-redux';
 import { logout } from '../store/features/userSlice';
 import logo from '../assets/logo.png'
 
+interface myProps {
+    handleSearch?: any
+}
 
 
-
-const Navbar = () => {
+const Navbar:FC<myProps> = ({handleSearch}) => {
     const navigate = useNavigate()
     const [cookies, setCookie, removeCookie] = useCookies(["userToken"]);
     const [isOpen, setIsOpen] = useState(false);
     const [scroll, setScroll] = useState<any>()
+
     const dispatch = useDispatch()
 
     const goProfile = () => {
@@ -31,6 +34,7 @@ const Navbar = () => {
 
 
     const handleLogout = useCallback(() => {
+
         Swal.fire({
             title: "Are you sure?",
             // text: "You won't be able to revert this!",
@@ -71,14 +75,13 @@ const Navbar = () => {
 
     window.scrollY
     return (
-        <div className=' sticky top-0 z-50'>
-
+        <div className=' sticky w-full top-0 z-50'>
             {screen.width > 767
-                ? <div className={`w-full h-20 flex flex-row justify-around items-center   bg-white duration-500  shadow-md`}>
+                ? <div className={`w-full h-20 flex flex-row justify-between px-10 items-center bg-white duration-500  shadow-md`}>
                     {/* <h1 className={` ${scroll > 50 ? 'text-white' : 'text-[#4397fb]'}cursor-pointer font-bold`} onClick={goHome} ></h1> */}
                     <img onClick={goHome} className='w-32 h-32 mt-5 cursor-pointer' src={logo} />
                     <div className='flex bg-[#eeeeee] rounded-lg px-2 items-center' >
-                        <input type="text" className='outline-none py-1 px-3 text-sm bg-transparent' />
+                        <input onChange={(e) => handleSearch(e.target.value) } type="text" className='outline-none py-2 px-4 w-72 text-md bg-transparent' />
                         <BiSearch className='text-[#4397fb] text-2xl  ' />
                     </div>
                     <div className="relative inline-block text-left">
@@ -88,7 +91,7 @@ const Navbar = () => {
                             aria-expanded={isOpen}
                             onClick={() => setIsOpen(!isOpen)}
                         >
-                            <CgProfile className={`text-3xl cursor-pointer text-[#4397fb]`} />
+                            <CgProfile className={`text-4xl cursor-pointer text-[#4397fb]`} />
                         </button>
                         {isOpen && (
                             <div className="absolute right-0 z-10 w-full mt-2 origin-top-right rounded-md shadow-lg bg-white ring-1 ring-gray-200" role="menu" aria-orientation="vertical" aria-labelledby="options-menu">
