@@ -9,35 +9,35 @@ import { useCookies } from "react-cookie";
 import Swal from "sweetalert2";
 
 const Account = () => {
-const [saldo, setSaldo] = useState<number>()
-const [cookies, setCookie, removeCookie] = useCookies(["userToken"]);
+  const [saldo, setSaldo] = useState<any>()
+  const [cookies, setCookie, removeCookie] = useCookies(["userToken"]);
   const Navigate = useNavigate();
 
-    const updateSaldo = async() => {
+  const account:any = localStorage.getItem('user')
+  const dataAccount = JSON.parse(account)
 
-      try {
-        const addSalddo = {
-            amount: saldo
-        }
-      const res =  await axios.put('http://104.198.56.90:8081/users/balances' , addSalddo , {
-            headers: {Authorization : `Bearer ${cookies.userToken}`}
-        })
-        if (res.data) {
-          Swal.fire({
-            position: "center",
-            icon: "success",
-            text: "Top-up Diamon ML successfully",
-            showConfirmButton: false,
-            timer: 1500,
-          });
-        
-        }
-        
-      } catch (error) {
-        
+  const updateSaldo = async () => {
+    try {
+      const addSalddo = {
+        amount: saldo
       }
-        
+      const res = await axios.put('https://airbnb.my-extravaganza.site/users/balances', addSalddo, {
+        headers: { Authorization: `Bearer ${cookies.userToken}` }
+      })
+      if (res.data) {
+        Swal.fire({
+          position: "center",
+          icon: "success",
+          text: "success",
+          showConfirmButton: false,
+          timer: 1500,
+        });
+
+      }
+    } catch (error) {
     }
+
+  }
   const goTrip = () => {
     Navigate("/trip");
   };
@@ -45,9 +45,11 @@ const [cookies, setCookie, removeCookie] = useCookies(["userToken"]);
   const goProfile = () => {
     Navigate("/profile");
   };
-const goList = () => {
-  Navigate("/listhosting");
-}
+  const goList = () => {
+    Navigate("/listhosting");
+  }
+
+
   return (
     <>
       <Navbar />
@@ -61,8 +63,8 @@ const goList = () => {
           <div className="grid grid-cols-2 w-fit ">
             <CgProfile className="text-6xl" />
             <div>
-              <p>ultramen joged</p>
-              <p>Check profile</p>
+              <p className="text-xl font-semibold">{dataAccount.name}</p>
+              <p className="text-md">Check profile</p>
             </div>
           </div>
           <MdKeyboardArrowRight className="text-3xl " />
@@ -88,14 +90,14 @@ const goList = () => {
             <div className="modal modal-bottom sm:modal-middle flex justify-center">
               <div className="modal-box ">
                 <div className="flex flex-col justify-center mx-auto">
-                    <h1 className="text-lg font-bold text-[#4397fb]">Masukkan saldo :</h1>
-                <input className="input input-md border border-[#4397fb] mt-5 mb-5" type="number" value={saldo}onChange={(e) => setSaldo(parseInt(e.target.value))} />
-                <div className="modal-action mx-auto">
-                  <label htmlFor="my-modal-6" className="btn bg-orange-alta border-none hover:bg-orange-alta">
-                    Close
-                  </label>
+                  <h1 className="text-lg font-bold text-[#4397fb]">Masukkan saldo :</h1>
+                  <input className="input input-md border border-[#4397fb] mt-5 mb-5" type="number" value={saldo || null} onChange={(e) => setSaldo(parseInt(e.target.value))} />
+                  <div className="modal-action mx-auto">
+                    <label htmlFor="my-modal-6" className="btn bg-orange-alta border-none hover:bg-orange-alta">
+                      Close
+                    </label>
                     <label htmlFor="my-modal-6" className="btn btn-md bg-dark-alta border-none hover:bg-dark-alta" onClick={updateSaldo}>Confirm</label>
-                </div>
+                  </div>
                 </div>
               </div>
             </div>

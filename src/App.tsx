@@ -20,20 +20,20 @@ function App() {
 
 
   return (
-    <BrowserRouter>
-      <Routes>
-        <Route path='/' element={<Login/>} />
-        <Route path='/home' element={<Home />} />
-        <Route path='/reserve/:id' element={<Reserve />} />
-        <Route path='/register' element={<Register/>} />
-        <Route path='/payment' element={<Payment />} />
-        <Route path='/trip' element={<Trip/>} />
-        <Route path='/account' element={<Account/>} />
-        <Route path='/profile' element={<Profile/>} />
-        <Route path='/listhosting' element={<ListHosting/>} />
-        <Route path='/hosting' element={<Hosting />} />
-      </Routes>
-    </BrowserRouter>
+      <BrowserRouter>
+        <Routes>
+          <Route path='/' element={<Login />} />
+          <Route path='/home' element={<Home />} />
+          <Route path='/reserve/:id' element={<Reserve />} />
+          <Route path='/register' element={<Register />} />
+          <Route path='/payment' element={<Payment />} />
+          <Route path='/trip' element={<Trip />} />
+          <Route path='/account' element={<Account />} />
+          <Route path='/profile' element={<Profile />} />
+          <Route path='/listhosting' element={<ListHosting />} />
+          <Route path='/hosting' element={<Hosting />} />
+        </Routes>
+      </BrowserRouter>
   )
 }
 

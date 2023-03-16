@@ -47,7 +47,7 @@ const Hosting: FC<ImageInputProps> = ({ onImageChange }) => {
     formData.append("facilities", facilities);
     formData.append("price", price?.toString() || "");
     try {
-      await axios.post("http://104.198.56.90:8081/rooms", formData);
+      await axios.post(" https://airbnb.my-extravaganza.site/rooms", formData);
       alert("Data uploaded successfully");
       setName("");
       setLocation("");
