@@ -121,6 +121,7 @@ const Reserve = () => {
             <div className='px-5 md:px py-5'>
                 {isLoad ? <Loader /> : ''}
                 {dataRoom?.map((item: any, index: number) => {
+                    console.log(item)
                     return (
                         <div key={index}>
                             <h1 className='font-bold text-2xl'>{item.name}</h1>
@@ -129,10 +130,16 @@ const Reserve = () => {
                                 <h3>{item.location}</h3>
                             </div>
                             {/* image reserve  */}
-                            <div className='w-full py-5 grid gap-10 md:grid-cols-3 sm:grid-cols-1'>
-                                <div>
-                                    <img src={`https://storage.googleapis.com/alta-airbnb/` + item.images?.[0].url_image} className='w-full h-full md:col-span-2' alt="" />
+                            <div className='grid grid-cols-1 md:grid-cols-3 py-4 gap-5 '>
+                                <div className='w-full grid gap-10 md:grid-cols-1 sm:grid-cols-1 col-span-2'>
+                                    <img src={`https://storage.googleapis.com/alta-airbnb/` + item.images?.[0].url_image} className='w-full h-full md:col-span-2 rounded-md' alt="" />
+                                    {/* <div className='w-full grid grid-cols-4 gap-2'>
+                                        <img src={`https://storage.googleapis.com/alta-airbnb/` + item.images?.[1].url_image} className='w-full h-md rounded-md ' alt="" />
+                                        <img src={`https://storage.googleapis.com/alta-airbnb/` + item.images?.[2].url_image} className='w-full h-md rounded-md ' alt="" />
+                                        <img src={`https://storage.googleapis.com/alta-airbnb/` + item.images?.[3].url_image} className='w-full h-md rounded-md ' alt="" />
+                                    </div> */}
                                 </div>
+
                                 <div className='p-5 rounded-md w-full h-fit border-2 md:col-span-1 border-[#4397fb] shadow-lg '>
                                     <h1><span className='text-xl font-bold'>${item.price}</span> night</h1>
                                     <p>{item.location}</p>

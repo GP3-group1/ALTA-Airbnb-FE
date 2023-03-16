@@ -2,7 +2,7 @@ import React, { FC } from "react";
 import seririt from "../assets/seririt.jpg";
 import { AiTwotoneStar } from "react-icons/ai";
 import { SpinningCircles } from "react-loading-icons";
-import { Tooltip } from 'react-tooltip'
+// import { Tooltip } from 'react-tooltip'
 
 interface myProps {
   id: number;
@@ -55,9 +55,9 @@ const ListCard: FC<myProps> = ({
   }
   return (
     <div className="md:w-full w-full h-fit rounded-md lg:max-w-full" key={id}>
-      <Tooltip className="flex justify-center w-fit mx-auto mb-5 text-lg text-white bg-inherit bg-blue-gray-600 rounded-xl px-5" id="my-tooltip" />
+      {/* <Tooltip className="flex justify-center w-fit mx-auto mb-5 text-lg text-white bg-inherit bg-blue-gray-600 rounded-xl px-5" id="my-tooltip" /> */}
       <label  onClick={handleDetail} htmlFor={imageModal}>
-      <img src={imgUrl + image} alt="" className="rounded-md cursor-pointer" width={400} data-tooltip-id="my-tooltip" data-tooltip-content="Wanna Add More Photos? Click the image"   />
+      <img src={imgUrl + image} alt="" className="rounded-md cursor-pointer" width={400}     />
       
       </label>
 
