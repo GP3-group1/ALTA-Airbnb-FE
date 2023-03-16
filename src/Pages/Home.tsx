@@ -112,13 +112,13 @@ const Home = () => {
             </div>
 
             {/* card */}
-            <div className='w-full md:px-10 px-5 py-10 gap-10 md:gap-6 grid sm:grid-cols-1 md:grid-cols-4  '>
+            {/* <div className='w-full md:px-10 px-5 py-10 gap-10 md:gap-6 grid sm:grid-cols-1 md:grid-cols-4  '>
                 {allRoom?.map((items: any, index: any) => {
                     return (
                         <Card key={index} title={items.name} location={items.location} rating={items.avg_rating} price={`$${items.price}`} handleDetail={() => handleDetail(items.id)} />
                     )
                 })}
-            </div>
+            </div> */}
         </div>
     )
 }
