@@ -2,6 +2,7 @@ import React, { FC } from "react";
 import seririt from "../assets/seririt.jpg";
 import { AiTwotoneStar } from "react-icons/ai";
 import { SpinningCircles } from "react-loading-icons";
+import { IoLocationOutline } from "react-icons/io5";
 // import { Tooltip } from 'react-tooltip'
 
 interface myProps {
@@ -16,6 +17,7 @@ interface myProps {
   image?: string;
   handleEdit?: (id: number) => void;
   handleDelete?: (id: number) => Promise<void>;
+  deletImg?:  (id: number) => Promise<void>;
   handleDetail?: React.MouseEventHandler;
   editModal?: string;
   loading: boolean;
@@ -33,6 +35,7 @@ const ListCard: FC<myProps> = ({
   handleDetail,
   handleDelete,
   handleEdit,
+  deletImg,
   editModal,
   imageModal,
 }) => {
@@ -46,6 +49,10 @@ const ListCard: FC<myProps> = ({
     event.stopPropagation();
     handleDelete?.(id);
   };
+  const handleDeleteImg = (event: React.MouseEvent<HTMLButtonElement>) => {
+    event.stopPropagation();
+    handleDelete?.(id);
+  };
   if (loading) {
     return (
       <h1 className="flex justify-center">
@@ -54,25 +61,27 @@ const ListCard: FC<myProps> = ({
     );
   }
   return (
-    <div className="md:w-full w-full h-fit rounded-md lg:max-w-full" key={id}>
+    <div className="md:w-full w-full h-full rounded-md lg:max-w-full shadow-md" key={id}>
       {/* <Tooltip className="flex justify-center w-fit mx-auto mb-5 text-lg text-white bg-inherit bg-blue-gray-600 rounded-xl px-5" id="my-tooltip" /> */}
       <label  onClick={handleDetail} htmlFor={imageModal}>
-      <img src={imgUrl + image} alt="" className="rounded-md cursor-pointer" width={400}     />
+      <div className="relative overflow-hidden h-52">
+      <img src={imgUrl + image} alt="" className="rounded-md cursor-pointer w-full" width={400}  />
+      </div>
       
       </label>
 
-      <div className=" mt-2 gap-2 flex flex-col mb-5">
-        <h1 className="text-sm font-bold">{title}</h1>
-        <p className="text-sm">{location}</p>
-        <p className="flex text-sm gap-1 items-center">
-          <AiTwotoneStar />
+      <div className=" mt-2 gap-2 flex flex-col mb-5 ml-2">
+        <h1 className="text-md font-bold">{title}</h1>
+        <p className="text-sm flex items-center font-semibold font-sans"><IoLocationOutline size={15} />{" "}     {location}</p>
+        <p className="flex text-sm gap-1 items-center ">
+          <AiTwotoneStar className="text-deep-orange-600" />
           {rating}
         </p>
-        <p>
-          <span className="text-orange-600 text-sm">${price}</span> night
+        <p className="">
+          <span className="text-orange-600 text-sm">${price}</span> / night
         </p>
       </div>
-      <div className="flex justify-evenly mt-2">
+      <div className="flex justify-evenly mt-16 lg:mt-36 gap-4 ">
         <button onClick={handleEditClick}
         className="btn btn-sm w-36 items-center pt-1 bg-orange-alta border-none hover:bg-orange-alta hover:translate-y-1">
           <label
@@ -82,6 +91,13 @@ const ListCard: FC<myProps> = ({
             Edit
           </label>
         </button>
+        {/* <button
+          type="button"
+          className="btn btn-sm w-36 items-center pt-1 bg-red-500 border-none hover:bg-red-800 hover:translate-y-1"
+          onClick={handleDeleteImg}
+        >
+          Delete Image
+        </button> */}
         <button
           type="button"
           className="btn btn-sm w-36 items-center pt-1 bg-red-500 border-none hover:bg-red-800 hover:translate-y-1"
