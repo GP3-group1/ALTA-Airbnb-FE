@@ -20,9 +20,9 @@ interface myProps {
 const Card: FC<myProps> = ({ title, location, price, handleDetail, image ,rating }) => {
     const imgUrl = 'https://storage.googleapis.com/alta-airbnb/'
     return (
-        <div className=" overflow-hidden shadow-lg md:w-fit w-fit h-fit rounded-md cursor-pointer" onClick={handleDetail}>
-            <div className='h-44 relative  overflow-hidden'>
-                <img className="w-auto h-full" src={imgUrl + image} alt="Sunset in the mountains" />
+        <div className=" overflow-hidden shadow-lg md:w-fit w-full h-fit rounded-md cursor-pointer" onClick={handleDetail}>
+            <div className='h-44 w-68 md:w-72 relative  overflow-hidden'>
+                <img className="w-full h-auto absolute" src={imgUrl + image} alt="Sunset in the mountains" />
             </div>
             <div className="px-2 py-4">
                 <div className="font-semibold text-sm md:text-md  mb-2">{title}</div>

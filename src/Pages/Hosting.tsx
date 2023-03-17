@@ -3,6 +3,8 @@ import Navbar from "../components/Navbar";
 import axios, { AxiosRequestConfig } from "axios";
 import { useCookies } from "react-cookie";
 import Swal from "sweetalert2";
+import Loader from "../components/Loader";
+import { Navigate, useNavigate } from "react-router-dom";
 
 const Hosting = () => {
   // const [previewUrls, setPreviewUrls] = useState<string[]>([]);
@@ -15,6 +17,8 @@ const Hosting = () => {
   const [price, setPrice] = useState<number>();
   const [image, setImage] = useState<File>();
   const [cookies, setCookie, removeCookie] = useCookies(["userToken"]);
+  const [isLoad, setIsLoad] = useState(false)
+  const navigate = useNavigate()
 
   const uploadFile = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -44,6 +48,7 @@ const Hosting = () => {
     data.append("description", description);
 
     try {
+      setIsLoad(!isLoad)
       const res = await axios.post("https://airbnb.my-extravaganza.site/rooms", data, {
         headers: {
           "content-type": "multipart/form-data",
@@ -58,6 +63,7 @@ const Hosting = () => {
           showConfirmButton: false,
           timer: 1500,
         });
+        navigate('/listhosting')
       }
     } catch (error) {
       Swal.fire({
@@ -68,6 +74,7 @@ const Hosting = () => {
       });
       console.error(error);
     }
+    setIsLoad(false)
   };
 
   const handleFileInputChange = (
@@ -83,7 +90,7 @@ const Hosting = () => {
   return (
     <div className="flex flex-col h-full">
       <Navbar />
-
+      {isLoad ? <Loader /> : ''}
       <form onSubmit={uploadFile} className="flex flex-col lg:px-32 h-full overflow-hidden mb-20">
         {/* Test input */}
         {/* end */}

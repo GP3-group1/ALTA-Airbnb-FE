@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { CgProfile } from "react-icons/cg";
 import Navbar from "../components/Navbar";
 
@@ -11,10 +11,13 @@ import Swal from "sweetalert2";
 const Account = () => {
   const [saldo, setSaldo] = useState<any>()
   const [cookies, setCookie, removeCookie] = useCookies(["userToken"]);
+  const [ dataAccount, setDataAccount ] = useState<any>([])
   const Navigate = useNavigate();
 
-  const account:any = localStorage.getItem('user')
-  const dataAccount = JSON.parse(account)
+  useEffect(() => {
+    const account: any = localStorage.getItem('user')
+    setDataAccount(JSON.parse(account))
+  }, [])
 
   const updateSaldo = async () => {
     try {
