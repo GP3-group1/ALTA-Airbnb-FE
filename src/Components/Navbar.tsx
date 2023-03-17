@@ -77,9 +77,8 @@ const Navbar:FC<myProps> = ({handleSearch}) => {
     return (
         <div className=' sticky w-full top-0 z-50'>
             {screen.width > 767
-                ? <div className={`w-full h-20 flex flex-row justify-between px-10 items-center bg-white duration-500  shadow-md`}>
-                    {/* <h1 className={` ${scroll > 50 ? 'text-white' : 'text-[#4397fb]'}cursor-pointer font-bold`} onClick={goHome} ></h1> */}
-                    <img onClick={goHome} className='w-32 h-32 mt-5 cursor-pointer' src={logo} />
+                ? <div className={`w-full h-20 2xl:h-28 flex flex-row justify-between px-10 items-center bg-white duration-500  shadow-md`}>
+                    <img onClick={goHome} className='w-32 ml-8 h-32 mt-5 cursor-pointer' src={logo} />
                     <div className='flex bg-[#eeeeee] rounded-lg px-2 items-center' >
                         <input onChange={(e) => handleSearch(e.target.value) } type="text" className='outline-none py-2 px-4 w-72 text-md bg-transparent' />
                         <BiSearch className='text-[#4397fb] text-2xl  ' />

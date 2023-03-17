@@ -83,8 +83,8 @@ const Trip = () => {
                                             <h3 className="font-bold text-lg">Congratulations random Internet user!</h3>
                                             <textarea name="" id="" onChange={(e) => setReview(e.target.value)} className='w-full resize-none border-2 outline-none' placeholder='add your comment' ></textarea>
                                             <div className="rating">
-                                                <input type="radio" value={1} onChange={(e) => setRate(e.target.value)} name="rating-2" className="mask mask-star-2 bg-orange-400" />
-                                                <input type="radio" value={2} onChange={(e) => setRate(e.target.value)} name="rating-2" className="mask mask-star-2 bg-orange-400" checked />
+                                                <input type="radio" value={1} onChange={(e) => setRate(e.target.value)} name="rating-2" className="mask mask-star-2 bg-orange-400" checked  />
+                                                <input type="radio" value={2} onChange={(e) => setRate(e.target.value)} name="rating-2" className="mask mask-star-2 bg-orange-400" />
                                                 <input type="radio" value={3} onChange={(e) => setRate(e.target.value)} name="rating-2" className="mask mask-star-2 bg-orange-400" />
                                                 <input type="radio" value={4} onChange={(e) => setRate(e.target.value)} name="rating-2" className="mask mask-star-2 bg-orange-400" />
                                                 <input type="radio" value={5} onChange={(e) => setRate(e.target.value)} name="rating-2" className="mask mask-star-2 bg-orange-400" />

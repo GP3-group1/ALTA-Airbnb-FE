@@ -111,8 +111,8 @@ const Home = () => {
                         <div className="modal-box bg-white px-7">
                             <h1 className='text-2xl font-bold text-gray-600'>Price range</h1>
                             <div className='flex flex-row gap-3 my-3'>
-                                <input type="number" className='w-32 outline-none text-lg bg-gray-100 px-2' onChange={(e) => setPrice1(e.target.value)} />
-                                -
+                                $<input type="number" className='w-32 outline-none text-lg bg-gray-100 px-2' onChange={(e) => setPrice1(e.target.value)} />
+                                - 
                                 <input type="number" className='w-32 outline-none text-lg px-2 bg-gray-100' onChange={(e) => setPrice2(e.target.value)} />
                             </div>
                             <h1 className='text-2xl font-bold text-gray-600'>Location</h1>
@@ -129,7 +129,7 @@ const Home = () => {
                 </div>
 
                 {/* card */}
-                <div className='w-full  py-10 gap-10 md:gap-6 grid sm:grid-cols-1 md:grid-cols-4  '>
+                <div className='w-full  py-10 gap-10 md:gap-6 grid sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-4  '>
                     {allRoom?.map((items: any, index: any) => {
                         return (
                             <div key={index}>

@@ -126,7 +126,6 @@ const Reserve = () => {
                         <div key={index}>
                             <h1 className='font-bold text-2xl'>{item.name}</h1>
                             <div className='flex flex-row gap-2'>
-                                <h3 className='flex items-center gap-1 '><AiTwotoneStar /> {item.avg_ratings}</h3>
                                 <h3>{item.location}</h3>
                             </div>
                             {/* image reserve  */}
