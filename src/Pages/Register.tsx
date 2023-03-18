@@ -87,7 +87,7 @@ const Register = () => {
       {
         screen.width > 767 ? 
         <div style={bg} className="h-screen w-screen ">
-        <div className="flex h-screen items-center xl:ml-[200px] md:ml">
+        <div className="flex h-screen items-center xl:ml-[200px] md:ml 2xl:p-44 xl:p-20 md:p-10">
           <div className="w-fit p-6 bg-blue-500 align-middle rounded-xl shadow-xl 2xl:max-w-md 2xl:max-h-[800px] lg:max-h-[600px] xl:max-w-lg">
             <h1 className="text-2xl 2xl:text-5xl font-bold text-center text-white uppercase py-5 ">
               REGISTER

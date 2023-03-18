@@ -222,7 +222,7 @@ const ListHosting = () => {
           editValues={villaEditValues}
           editMode={editMode}
         />
-        <div className="grid grid-cols-1 mx-auto md:grid-cols-4 lg:px-20 2xl:grid-cols-4 xl:px-20 px-5 gap-5 max-h-80 mt-20 min-h-screen mb-96"> 
+        <div className="grid grid-cols-1 mx-auto md:grid-cols-3 lg:px-20 2xl:grid-cols-4 xl:px-20 px-5 gap-5 max-h-80 mt-20 min-h-screen mb-96"> 
           
           {getListing && loading === true ? (
             getListing?.map((item: any, i: number) => {
