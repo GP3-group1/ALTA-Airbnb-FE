@@ -85,8 +85,8 @@ const Login = () => {
       {
         screen.width > 767 ?
         <div style={bg} className="h-screen w-screen  ">
-        <div className="flex items-center mt-4 xl:ml-[200px] md:ml 2xl:p-44 xl:p-20 md:p-10">
-          <div className="w-fit p-6 bg-blue-500 align-middle rounded-xl shadow-xl lg:max-w-md h-full xl:max-w-lg">
+        <div className="flex items-center mt-4 xl:ml-[200px] md:ml 2xl:p-44 lg:p-10 ">
+          <div className="w-fit bg-blue-500 align-middle rounded-xl shadow-xl lg:max-w-md h-full px-5">
             <h1 className="text-2xl font-bold text-center text-white uppercase mt-10 mb-10 2xl:text-4xl">
               LOGIN
             </h1>

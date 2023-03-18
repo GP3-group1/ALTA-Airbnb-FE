@@ -55,7 +55,7 @@ const ListCard: FC<myProps> = ({
     );
   }
   return (
-    <div className="md:w-full w-full h-full rounded-md lg:max-w-full shadow-md" key={id}>
+    <div className="md:w-full w-full h-fit rounded-md lg:max-w-full shadow-md" key={id}>
      
       <label  onClick={handleDetail} htmlFor={imageModal}>
       <div className="relative overflow-hidden h-52">
@@ -75,7 +75,7 @@ const ListCard: FC<myProps> = ({
           <span className="text-orange-600 text-sm font-bold">${price}</span> / night
         </p>
       </div>
-      <div className="flex justify-evenly mt-5 mb-5 lg:mt-36 gap-4 ">
+      <div className="flex justify-evenly mt-5 mb-5 2xl:mt-36 gap-4">
         <button onClick={handleEditClick}
         className="btn btn-sm w-fit px-5 2xl:px-10 md:px-3 sm:px-3 items-center pt-1 bg-[#4397fb] border-none hover:bg-[#4397fb] hover:translate-y-1">
           <label
