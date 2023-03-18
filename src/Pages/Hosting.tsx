@@ -7,8 +7,6 @@ import Loader from "../components/Loader";
 import { Navigate, useNavigate } from "react-router-dom";
 
 const Hosting = () => {
-  // const [previewUrls, setPreviewUrls] = useState<string[]>([]);
-  // const [selectedImages, setSelectedImages] = useState<File[]>([]);
   const [name, setName] = useState("");
   const [location, setLocation] = useState("");
   const [description, setDescription] = useState("");
@@ -92,9 +90,6 @@ const Hosting = () => {
       <Navbar />
       {isLoad ? <Loader /> : ''}
       <form onSubmit={uploadFile} className="flex flex-col lg:px-32 h-full overflow-hidden mb-20">
-        {/* Test input */}
-        {/* end */}
-        {/* Card input */}
         <div className="card shadow-md mt-20">
           <div className="card-body">
             <div className="flex flex-col gap-4 ">

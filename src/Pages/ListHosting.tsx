@@ -30,7 +30,6 @@ const ListHosting = () => {
           },
         },
       );
-      // console.log("check img : ", response.data.data?.facilities);
       setLoading(true);
       setGetListing(response.data.data);
     } catch (error) { }
@@ -63,9 +62,6 @@ const ListHosting = () => {
     if (!properties) {
       return;
     }
-    console.log("test 50", properties.images)
-    console.log('test', properties);
-    console.log(properties);
     setEditMode(true);
     setVillaEditValues({
       name: properties.name,
@@ -75,9 +71,7 @@ const ListHosting = () => {
       location: properties.location,
       price: properties.price,
       images: properties.images,
-
     });
-
     setSelectedVilla(id);
   }
 
@@ -112,10 +106,8 @@ const ListHosting = () => {
         getAllList();
         setEditMode(false);
       }
-
     } catch (error) {
       console.log(error);
-
     }
     setIsLoad(false)
   };
@@ -128,7 +120,6 @@ const ListHosting = () => {
       const response = await axios.delete(
         ` https://airbnb.my-extravaganza.site/rooms/${id}`, {
         headers: {
-          // "Content-Type": "application/json",
           Authorization: `Bearer ${cookies.userToken}`,
         },
       }
@@ -143,7 +134,6 @@ const ListHosting = () => {
         });
       }
       getAllList()
-      console.log('delete', response.data);
     } catch (error) {
       console.error(error);
     }
@@ -161,8 +151,6 @@ const ListHosting = () => {
   //handleModalFor add Foto
   const handleEditFoto = useCallback((room_id: string) => {
     const editProp = getListing.find((item: any) => item.images[0].room_id === room_id);
-    console.log("test edit ", editProp.images[0].room_id);
-    console.log("editProps :", editProp);
 
     if (!editProp) {
       return;
@@ -179,8 +167,6 @@ const ListHosting = () => {
   const EditImage2 = async (x: AddFoto, e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     const data = new FormData();
-    console.log("test x", x);
-    console.log("room_id value:", x.room_id);
 
     if (x.room_id !== undefined) {
       data.append("room_id", x.room_id);
@@ -240,10 +226,6 @@ const ListHosting = () => {
           
           {getListing && loading === true ? (
             getListing?.map((item: any, i: number) => {
-              // console.log("tess", item.images[0].room_id);
-
-              // console.log("test2", getListing);
-              // console.log("test", item.images[0].url_image);
               return (
                 <>
                   <ListCard

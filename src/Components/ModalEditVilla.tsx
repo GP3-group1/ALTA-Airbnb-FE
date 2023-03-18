@@ -71,8 +71,6 @@ const ModalEditVilla: FC<FormProps> = ({ onSubmit, editMode, editValues }) => {
     formValues.images != null 
       ? "add-villa-modal"
       : "";
-
-      // console.log(formValues);
       
   return (
     <div>

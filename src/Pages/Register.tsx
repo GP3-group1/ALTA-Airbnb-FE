@@ -41,7 +41,6 @@ const Register = () => {
         password: password,
         name: username,
       });
-      console.log(response.data);
       if (response.data) {
         Swal.fire({
           position: 'center',
@@ -97,7 +96,6 @@ const Register = () => {
               To keep connected with us please Register with your personal
               information by email adress, password and username
             </p>
-
                 <form className="flex flex-col" >
                   <div className="relative z-0 w-full mb-10 group ">
                     <input
@@ -172,7 +170,6 @@ const Register = () => {
           </div>
         </div>
       </div> 
-      
           :
           <div className="flex flex-col w-screen">
             <div style={bgSm} className="h-full w-full bg-blue-500 z-10"></div>

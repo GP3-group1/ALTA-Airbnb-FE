@@ -4,10 +4,8 @@ import Navbar from '../components/Navbar'
 
 
 import { FaFilter } from 'react-icons/fa'
-import { AiTwotoneStar } from 'react-icons/ai'
 import { IoLocationSharp, IoWalletSharp } from 'react-icons/io5'
 import Card from '../components/Card'
-import { User } from '../store/features/userSlice'
 import { useNavigate } from 'react-router'
 import axios from 'axios'
 import { useCookies } from 'react-cookie'

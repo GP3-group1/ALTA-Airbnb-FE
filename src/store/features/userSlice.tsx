@@ -18,7 +18,6 @@ export interface AuthState {
 }
 
 const savedUserString = localStorage.getItem('user');
-console.log(savedUserString);
 
 let savedUser: User | null = null;
 if (savedUserString !== undefined && savedUserString !== null) {

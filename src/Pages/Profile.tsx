@@ -5,12 +5,11 @@ import axios from 'axios'
 import { useCookies } from 'react-cookie'
 import Swal from 'sweetalert2'
 import { useDispatch } from 'react-redux'
-import { logout } from '../store/features/userSlice'
 import Loader from '../components/Loader'
 
 
 const Profile = () => {
-    const Navigate = useNavigate()
+    const navigate = useNavigate()
     const [cookies, setCookie, removeCookie] = useCookies(['userToken'])
     const [dataUser, setDataUser] = useState<any>([])
     const [name, setName] = useState('')
@@ -22,10 +21,10 @@ const Profile = () => {
     const [isLoad, setIsLoad] = useState(false)
 
     const goTrip = () => {
-        Navigate('/trip')
+        navigate('/trip')
     }
     const hosting = () => {
-        Navigate('/hosting')
+        navigate('/hosting')
     }
 
     const getUser = async () => {
@@ -35,7 +34,6 @@ const Profile = () => {
             }
         })
             .then((res) => {
-                console.log(res.data.data)
                 const response = [res.data.data]
                 setDataUser(response)
                 setName(res.data.data.name)
@@ -48,11 +46,6 @@ const Profile = () => {
 
 
     const updateProfile = async (e: any) => {
-        console.log(name)
-        console.log(email)
-        console.log(phone)
-        console.log(address)
-        console.log(sex)
         e.preventDefault()
         await axios.put('https://airbnb.my-extravaganza.site/users', {
             "name": name,
@@ -66,7 +59,6 @@ const Profile = () => {
             }
         })
             .then((res) => {
-                console.log(res.data)
                 Swal.fire({
                     position: "center",
                     icon: "success",
@@ -79,7 +71,7 @@ const Profile = () => {
 
     useEffect(() => {
         if (!cookies.userToken) {
-            Navigate('/login')
+            navigate('/login')
         }
         getUser()
     }, [cookies.userToken])
@@ -99,7 +91,6 @@ const Profile = () => {
                 Authorization: `Bearer ${cookies.userToken}`
             }
         }).then((res) => {
-            console.log(res.data)
             if (res.data) {
                 Swal.fire({
                     position: "center",
@@ -109,11 +100,9 @@ const Profile = () => {
                     timer: 1500,
                 });
                 removeCookie('userToken')
-                console.log(cookies.userToken)
-                Navigate('/')
+                navigate('/')
             }
         }).catch((err) => {
-            console.log(err)
             Swal.fire({
                 position: "center",
                 icon: "error",
@@ -140,7 +129,6 @@ const Profile = () => {
             }
         }
         ).then((res) => {
-            console.log(res.data);
             if (res.data) {
                 Swal.fire({
                     position: "center",
@@ -152,7 +140,6 @@ const Profile = () => {
             }
 
         }).catch((err) => {
-            console.log(err)
             Swal.fire({
                 position: "center",
                 icon: "error",
@@ -180,10 +167,8 @@ const Profile = () => {
                         <div className='btn btn-wide bg-white text-black mr-4 hover:text-white' onClick={(e) => handleDelete(e)}>
                             Delete Account
                         </div>
-
                         <div className=''>
                             <label className='btn btn-wide bg-white text-black hover:text-white' htmlFor="my-modal-3">Change password?</label>
-                            {/* Put this part before </body> tag */}
                             <input type="checkbox" id="my-modal-3" className="modal-toggle" />
                             <div className="modal">
                                 <div className="modal-box relative flex flex-col gap-3">
@@ -220,7 +205,7 @@ const Profile = () => {
                     <label htmlFor="">Gender</label>
                     <input type="text" onChange={(e) => setSex(e.target.value)} value={sex} className='border-b-2 h-8 mb-5 outline-none' />
                     <div className='flex flex-row justify-end gap-5 mt-5'>
-                        <button onClick={() => Navigate('/account')} className='bg-red-500 text-white px-3 rounded-md text-center text-bold'>Close</button>
+                        <button onClick={() => navigate('/account')} className='bg-red-500 text-white px-3 rounded-md text-center text-bold'>Close</button>
                         <button onClick={(e) => updateProfile(e)} className='bg-blue-500 text-white px-3 py-2 rounded-md text-center text-bold' >Save change</button>
                     </div>
                 </form>

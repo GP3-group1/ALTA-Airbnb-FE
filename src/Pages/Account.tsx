@@ -88,7 +88,6 @@ const Account = () => {
               Top up
             </p>
 
-            {/* Put this part before </body> tag */}
             <input type="checkbox" id="my-modal-6" className="modal-toggle" />
             <div className="modal modal-bottom sm:modal-middle flex justify-center">
               <div className="modal-box ">
