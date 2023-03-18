@@ -12,9 +12,7 @@ import Loader from "../components/Loader";
 import Swal from "sweetalert2";
 
 const Payment = () => {
-  const [endDate, setEndDate] = useState<Date | null>(null);
   const [cookies, setCookie, removeCookie] = useCookies(["userToken"]);
-  const maxDate = new Date("December 31, 2025");
   const navigate = useNavigate();
   const location = useLocation();
   const [data, setData] = useState<any>([])

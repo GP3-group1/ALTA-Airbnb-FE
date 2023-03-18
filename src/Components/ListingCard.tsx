@@ -3,7 +3,7 @@ import seririt from "../assets/seririt.jpg";
 import { AiTwotoneStar } from "react-icons/ai";
 import { SpinningCircles } from "react-loading-icons";
 import { IoLocationOutline } from "react-icons/io5";
-// import { Tooltip } from 'react-tooltip'
+
 
 interface myProps {
   id: number;
@@ -95,13 +95,6 @@ const ListCard: FC<myProps> = ({
         >
           Delete
         </button>
-        {/* <button
-          type="button"
-          className="btn btn-sm w-36 items-center pt-1 bg-red-500 border-none hover:bg-red-800 hover:translate-y-1"
-          onClick={handleDeleteImg}
-        >
-          Delete Image
-        </button> */}
       </div>
     </div>
   );
