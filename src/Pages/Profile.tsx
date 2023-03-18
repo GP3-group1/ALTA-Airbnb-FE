@@ -4,7 +4,6 @@ import { useNavigate } from 'react-router-dom'
 import axios from 'axios'
 import { useCookies } from 'react-cookie'
 import Swal from 'sweetalert2'
-import { useDispatch } from 'react-redux'
 import Loader from '../components/Loader'
 
 
@@ -17,15 +16,8 @@ const Profile = () => {
     const [phone, setPhone] = useState('')
     const [sex, setSex] = useState('')
     const [address, setAddress] = useState('')
-    const dispatch = useDispatch()
     const [isLoad, setIsLoad] = useState(false)
 
-    const goTrip = () => {
-        navigate('/trip')
-    }
-    const hosting = () => {
-        navigate('/hosting')
-    }
 
     const getUser = async () => {
         await axios.get('https://airbnb.my-extravaganza.site/users', {
@@ -151,10 +143,6 @@ const Profile = () => {
         setIsLoad(false)
     }
     const [showPassword, setShowPassword] = useState(false)
-    const handleTogglePassword = () => {
-        setShowPassword(!showPassword);
-    };
-
 
     return (
         <>

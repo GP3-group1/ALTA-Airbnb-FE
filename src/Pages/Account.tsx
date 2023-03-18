@@ -12,7 +12,7 @@ const Account = () => {
   const [saldo, setSaldo] = useState<any>()
   const [cookies, setCookie, removeCookie] = useCookies(["userToken"]);
   const [ dataAccount, setDataAccount ] = useState<any>([])
-  const Navigate = useNavigate();
+  const navigate = useNavigate();
 
   useEffect(() => {
     const account: any = localStorage.getItem('user')
@@ -42,14 +42,14 @@ const Account = () => {
 
   }
   const goTrip = () => {
-    Navigate("/trip");
+    navigate("/trip");
   };
 
   const goProfile = () => {
-    Navigate("/profile");
+    navigate("/profile");
   };
   const goList = () => {
-    Navigate("/listhosting");
+    navigate("/listhosting");
   }
 
 
