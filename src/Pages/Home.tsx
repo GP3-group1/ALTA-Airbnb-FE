@@ -127,7 +127,7 @@ const Home = () => {
                 </div>
 
                 {/* card */}
-                <div className='w-full  py-10 gap-10 md:gap-6 grid sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-4  '>
+                <div className='w-full  py-10 gap-10 md:gap-6 grid sm:grid-cols-1 md:grid-cols-2 xl:grid-cols-4 lg:grid-cols-3'>
                     {allRoom?.map((items: any, index: any) => {
                         return (
                             <div key={index}>

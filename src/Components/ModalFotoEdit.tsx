@@ -19,24 +19,24 @@ const initialFoto : AddFoto = {
 
 
 const ModalFotoEdit: FC<FotoProps> = ({onSubmit, newFoto, editMode}) => {
-  const [photo, setPhoto] = useState<AddFoto>(newFoto);
+  const [formData, setFormData] = useState<AddFoto>(newFoto);
   const [showImg, setShowImg] = useState<string>('')
 
   useEffect(() => {
     if(editMode || !editMode) {
-      setPhoto(newFoto);
+      setFormData(newFoto);
     }
   },[newFoto,editMode])
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    await onSubmit(photo, e);
-    setPhoto(initialFoto);
+    await onSubmit(formData, e);
+    setFormData(initialFoto);
   };
 
   const handleChange = (e: any) => {
    const selectedImg = e.target.files[0]
-   setPhoto((prev) => ({
+   setFormData((prev) => ({
     ...prev,
     image: selectedImg || null
   }));
@@ -47,8 +47,8 @@ const ModalFotoEdit: FC<FotoProps> = ({onSubmit, newFoto, editMode}) => {
   }
 
   const submitable =
-    photo.image != null &&
-    photo.room_id != ""
+  formData.image != null &&
+  formData.room_id != ""
     ? "add-foto-modal"
     : "";
 
@@ -69,7 +69,7 @@ const ModalFotoEdit: FC<FotoProps> = ({onSubmit, newFoto, editMode}) => {
           <form className="flex flex-col" onSubmit={handleSubmit}>
           <div className="flex justify-center mt-10">
             
-              {photo.image && (
+              {formData.image && (
                 <img
                   src={showImg}
                   alt="Selected image"
