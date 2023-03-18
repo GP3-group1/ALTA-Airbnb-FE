@@ -101,7 +101,6 @@ const Reserve = () => {
                 })
             })
             .catch(err => {
-                console.log(err)
                 Swal.fire({
                     title: 'Sorry',
                     text: 'this place is not available with the time you specified.',
@@ -121,7 +120,6 @@ const Reserve = () => {
             <div className='px-5 md:px py-5'>
                 {isLoad ? <Loader /> : ''}
                 {dataRoom?.map((item: any, index: number) => {
-                    console.log(item)
                     return (
                         <div key={index}>
                             <h1 className='font-bold text-2xl'>{item.name}</h1>
@@ -136,7 +134,6 @@ const Reserve = () => {
                                         <div className='w-full grid grid-cols-4 gap-2'>
                                             {
                                                 item?.images?.map((item: any, index: number) => {
-                                                    console.log('d', item)
                                                     return (
                                                         <img src={`https://storage.googleapis.com/alta-airbnb/` + item.url_image} className='w-full h-md rounded-md ' alt="" />
                                                     )
